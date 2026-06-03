@@ -196,7 +196,7 @@ body::before{
 .hero .media{ position:absolute; inset:0; z-index:0; }
 .hero .media::after{ content:""; position:absolute; inset:0;
   background:linear-gradient(180deg,rgba(10,12,14,.55),rgba(10,12,14,.78)); }
-.hero .chapter__inner{ justify-content:flex-end; padding-bottom:7rem; }
+.hero .chapter__inner{justify-content:center; padding-top:8rem; padding-bottom:6rem;}
 .hero h1{ font-size:clamp(3rem,11vw,9.5rem); font-weight:300; color:var(--on-dark);
   letter-spacing:-.02em; }
 .hero h1 em{ font-style:italic; color:var(--gold-pale); }
@@ -436,4 +436,276 @@ body::before{
 @media (prefers-reduced-motion:reduce){
   *{ animation:none !important; transition:none !important; }
   .reveal{ opacity:1; transform:none; }
+}
+/* ==========================================================
+   PHASE 1 — PROFESSIONAL POLISH PATCH
+   Faizan Quazi Portfolio
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. NAVIGATION BREATHING ROOM
+   ---------------------------------------------------------- */
+
+.nav{
+    padding:2rem var(--gut);
+}
+
+
+/* ----------------------------------------------------------
+   2. GLOBAL CHAPTER SPACING
+   Prevent content colliding with navbar
+   ---------------------------------------------------------- */
+
+.chapter__inner{
+    padding-top:9rem;
+    padding-bottom:5rem;
+}
+
+
+/* ----------------------------------------------------------
+   3. HERO REBALANCE
+   Better visual hierarchy
+   ---------------------------------------------------------- */
+
+.hero .chapter__inner{
+    justify-content:center;
+    padding-top:8rem;
+    padding-bottom:6rem;
+}
+
+.hero h1{
+    max-width:12ch;
+    line-height:.92;
+}
+
+
+/* ----------------------------------------------------------
+   4. CINEMATIC ORCA MOTION
+   Subtle luxury movement
+   ---------------------------------------------------------- */
+
+.hero video,
+.hero img{
+    transform:scale(1.03);
+    animation:orcaDrift 24s ease-in-out infinite;
+}
+
+@keyframes orcaDrift{
+
+    0%{
+        transform:scale(1.03) translateX(0px);
+    }
+
+    50%{
+        transform:scale(1.06) translateX(-10px);
+    }
+
+    100%{
+        transform:scale(1.03) translateX(0px);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   5. CHAPTER TITLES
+   More Rajesh Dhagare style proportions
+   ---------------------------------------------------------- */
+
+.chapter h2{
+    font-size:clamp(2rem,5vw,4rem);
+    line-height:.95;
+    max-width:10ch;
+}
+
+.page-hero h1{
+    max-width:10ch;
+    line-height:.92;
+}
+
+
+/* ----------------------------------------------------------
+   6. PROJECT SECTION FIX
+   Prevent chapter 2 overflow
+   ---------------------------------------------------------- */
+
+.proj-grid{
+    margin-top:1.8rem;
+    gap:1.2rem;
+}
+
+.proj-card h3{
+    font-size:1.35rem;
+}
+
+.proj-card .media{
+    aspect-ratio:4/4.8;
+}
+
+
+/* ----------------------------------------------------------
+   7. CAREER SECTION BREATHING
+   ---------------------------------------------------------- */
+
+.mini-tl{
+    margin-top:2rem;
+}
+
+.mtl{
+    padding:1.4rem 1rem 0;
+}
+
+
+/* ----------------------------------------------------------
+   8. CONTACT CHAPTER FIT
+   ---------------------------------------------------------- */
+
+.contact-flex{
+    gap:2rem;
+}
+
+
+/* ----------------------------------------------------------
+   9. PLACEHOLDER CLEANUP
+   Makes unfinished assets look intentional
+   ---------------------------------------------------------- */
+
+.media__ph{
+    opacity:.35;
+    transition:.4s ease;
+}
+
+.media__ph .file{
+    font-size:.68rem;
+    opacity:.65;
+}
+
+.media:hover .media__ph{
+    opacity:.5;
+}
+
+
+/* ----------------------------------------------------------
+   10. WORK MUSEUM
+   More premium exhibition feel
+   ---------------------------------------------------------- */
+
+.gallery__head{
+    padding-top:3rem;
+}
+
+.gallery__head h3{
+    font-size:clamp(2rem,4vw,3rem);
+}
+
+.gallery__lede{
+    max-width:58ch;
+}
+
+.plate .media{
+    border-radius:4px;
+}
+
+
+/* ----------------------------------------------------------
+   11. ABOUT PAGE IMPROVEMENTS
+   ---------------------------------------------------------- */
+
+.about-grid{
+    align-items:center;
+}
+
+.portrait .media{
+    box-shadow:
+    0 30px 80px rgba(0,0,0,.08);
+}
+
+.qcard{
+    min-height:260px;
+}
+
+
+/* ----------------------------------------------------------
+   12. FOOTER REFINEMENT
+   ---------------------------------------------------------- */
+
+.foot{
+    padding-top:5rem;
+}
+
+.foot h3{
+    max-width:12ch;
+}
+
+
+/* ----------------------------------------------------------
+   13. MOBILE FIXES
+   Critical
+   ---------------------------------------------------------- */
+
+@media (max-width:1024px){
+
+    .chapter__inner{
+        padding-top:8rem;
+    }
+
+    .proj-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media (max-width:760px){
+
+    .nav{
+        padding:1.5rem 1.2rem;
+    }
+
+    .chapter__inner{
+        padding-top:7.5rem;
+        padding-bottom:6rem;
+        overflow-y:auto;
+        justify-content:flex-start;
+    }
+
+    .hero .chapter__inner{
+        justify-content:center;
+    }
+
+    .chapter h2{
+        max-width:100%;
+        font-size:clamp(2rem,9vw,3rem);
+    }
+
+    .hero h1{
+        font-size:clamp(3rem,14vw,5rem);
+    }
+
+    .proj-grid{
+        grid-template-columns:1fr;
+    }
+
+    .proj-card .media{
+        aspect-ratio:16/10;
+    }
+
+    .contact-flex{
+        grid-template-columns:1fr;
+    }
+
+    .chapter__no{
+        top:6rem;
+        right:1rem;
+        font-size:clamp(3rem,18vw,5rem);
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .hero video,
+    .hero img{
+        animation:none;
+    }
+
 }
