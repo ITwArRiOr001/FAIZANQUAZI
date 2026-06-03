@@ -61,17 +61,17 @@
         <p class="lede reveal in" data-d="4">95% of our ocean — and the most meaningful enterprise design work — remains unexplored.<br>
           I dive with intent: reading user currents, charting information architectures, and surfacing systems that move with people. Eight years turning research into product clarity at HCL Software.</p>
         
-        <!-- NEW: Depth Meter / Zone Indicator -->
-        <div class="depth-meter reveal in" data-d="5" style="margin-top:2.8rem; max-width:420px;">
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:.6rem;">
-            <span style="font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold-soft);">Current Depth</span>
-            <span style="font-family:var(--display); font-size:1.1rem; color:var(--gold-pale);">Epipelagic · 0–200m</span>
+        <!-- Depth Meter / Zone Indicator - now professional reusable component -->
+        <div class="depth-meter reveal in" data-d="5">
+          <div class="depth-meter__head">
+            <span class="depth-label">Current Depth</span>
+            <span class="depth-value">Epipelagic · 0–200m</span>
           </div>
-          <div style="height:3px; background:rgba(237,231,218,.2); border-radius:3px; overflow:hidden;">
-            <div style="height:100%; width:12%; background:linear-gradient(to right, var(--gold), var(--gold-pale)); border-radius:3px;"></div>
+          <div class="depth-bar">
+            <div class="depth-fill"></div>
           </div>
-          <div style="display:flex; justify-content:space-between; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-dark-soft); margin-top:.35rem;">
-            <span>Surface</span><span style="color:var(--gold-pale);">Sunlit Zone</span><span>Hadal →</span>
+          <div class="depth-zones">
+            <span>Surface</span><span class="current">Sunlit Zone</span><span>Hadal →</span>
           </div>
         </div>
 
@@ -117,7 +117,7 @@
           </a>
         </div>
 
-        <div class="reveal" data-d="5" style="margin-top:2.4rem">
+        <div class="reveal work-cta" data-d="5">
           <a class="btn btn--gold" href="work.html">Enter the Work Museum <span class="arr">→</span></a>
         </div>
       </div>
@@ -128,7 +128,7 @@
       <span class="chapter__no">03</span>
       <div class="chapter__inner">
         <p class="eyebrow reveal in" data-d="1">Chapter 03 — The Current</p>
-        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">Eight years,<br>one steady migration</h2>
+        <h2 class="reveal in" data-d="2">Eight years,<br>one steady migration</h2>
         <p class="lede reveal in" data-d="3">A steady migration deeper into enterprise UX — research-led, outcome-driven,
           and built alongside PMs, engineers and clients. From surface graphic work to hadal strategy.</p>
 
@@ -140,7 +140,7 @@
           <div class="mtl"><span class="yr">2022</span><span class="co">HCL · Commerce</span><span class="ro">UX Analyst — Present</span></div>
         </div>
 
-        <div class="reveal in" data-d="5" style="margin-top:2.6rem">
+        <div class="reveal in" data-d="5">
           <a class="btn btn--light" href="careers.html">View full timeline <span class="arr">→</span></a>
         </div>
       </div>
@@ -155,10 +155,10 @@
           “I’m focused on creating meaningful experiences through design.”<br>
           <span class="src">— Faizan Quazi, Ocean Museum Curator</span>
         </blockquote>
-        <p class="lede reveal" data-d="3" style="margin-top:1.4rem">
+        <p class="lede reveal philosophy-lede" data-d="3">
           Research first. Decisions backed by segmented data, personas and usability evidence —
           not opinion. Then design that earns its place in the depths.</p>
-        <div class="reveal" data-d="4" style="margin-top:2.2rem">
+        <div class="reveal" data-d="4">
           <a class="btn" href="about.html">Read the full story <span class="arr">→</span></a>
         </div>
       </div>
@@ -169,7 +169,7 @@
       <span class="chapter__no">05</span>
       <div class="chapter__inner">
         <p class="eyebrow reveal in" data-d="1">Chapter 05 — Let’s Surface</p>
-        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">Begin a<br>conversation</h2>
+        <h2 class="reveal in" data-d="2">Begin a<br>conversation</h2>
         <div class="contact-flex">
           <ul class="contact-list reveal in" data-d="3">
             <li><span class="k">Email</span><a class="v" href="mailto:faizanquazi123@gmail.com">faizanquazi123@gmail.com</a></li>
@@ -177,9 +177,9 @@
             <li><span class="k">Location</span><span class="v">Pune / Mumbai, Maharashtra · India</span></li>
             <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">/in/faizanquazi</a></li>
           </ul>
-          <div class="reveal in" data-d="4">
-            <p class="lede" style="color:var(--on-dark-soft)">Open to product design, UX research and identity work that goes deep.</p>
-            <div style="margin-top:1.8rem; display:flex; gap:1rem; flex-wrap:wrap">
+          <div class="reveal in contact-cta" data-d="4">
+            <p class="lede contact-lede">Open to product design, UX research and identity work that goes deep.</p>
+            <div class="contact-actions">
               <a class="btn btn--gold" href="contact.html">Contact form <span class="arr">→</span></a>
               <a class="btn btn--light" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
