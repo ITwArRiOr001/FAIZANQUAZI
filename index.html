@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Faizan Quazi — User Experience Analyst</title>
-<meta name="description" content="Faizan Quazi · UX Analyst, Designer & Researcher. A museum of product thinking, research and craft.">
+<title>Faizan Quazi — Ocean Museum of UX</title>
+<meta name="description" content="Faizan Quazi · UX Analyst, Designer & Researcher. An immersive Ocean Museum of product thinking, research craft and depth. 95% remains unexplored until we dive with intent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
 <!-- NAV -->
 <header class="nav">
-  <a class="nav__brand" href="index.html">Faizan&nbsp;Quazi<small>UX · Research · Product</small></a>
+  <a class="nav__brand" href="index.html">Faizan&nbsp;Quazi<small>Ocean Museum · UX · Research · Product</small></a>
   <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav class="nav__links">
     <a href="#" data-go="1">Home</a>
@@ -31,18 +31,18 @@
 
 <!-- CHAPTER DOTS -->
 <div class="pager-dots" aria-label="Chapters">
-  <button class="active" aria-label="Chapter 1"></button>
-  <button aria-label="Chapter 2"></button>
-  <button aria-label="Chapter 3"></button>
-  <button aria-label="Chapter 4"></button>
-  <button aria-label="Chapter 5"></button>
+  <button class="active" aria-label="Chapter 1 — Epipelagic"></button>
+  <button aria-label="Chapter 2 — Mesopelagic"></button>
+  <button aria-label="Chapter 3 — Bathypelagic"></button>
+  <button aria-label="Chapter 4 — Abyss"></button>
+  <button aria-label="Chapter 5 — Hadal"></button>
 </div>
 
 <!-- HORIZONTAL PAGER -->
 <main class="pager">
   <div class="pager__track">
 
-    <!-- ===== CHAPTER 01 — INTRO ===== -->
+    <!-- ===== CHAPTER 01 — EPIPELAGIC (SURFACE) ===== -->
     <section class="chapter hero chapter--dark">
       <div class="media media--dark">
         <video autoplay muted loop playsinline poster="assets/hero-orca-poster.jpg">
@@ -55,28 +55,43 @@
       </div>
       <span class="chapter__no">01</span>
       <div class="chapter__inner">
-        <p class="eyebrow reveal in" data-d="1">Chapter 01 — The Deep</p>
-        <h1 class="reveal in" data-d="2">Designing with<br><em>intent &amp; depth</em></h1>
+        <p class="eyebrow reveal in" data-d="1">Chapter 01 — Epipelagic Entry</p>
+        <h1 class="reveal in" data-d="2">Mapping the<br><em>unexplored depths</em></h1>
         <p class="role reveal in" data-d="3">User Experience Analyst · Designer · Researcher</p>
-        <p class="lede reveal in" data-d="4">Like the orca — intelligent, strategic, precise — I read the currents of how people work,
-          then design systems that move with them. Eight years turning research into product clarity.</p>
-        <div class="hero__meta reveal in" data-d="5">
-          <div><span class="k">Based in</span><span class="v">Pune, India</span></div>
+        <p class="lede reveal in" data-d="4">95% of our ocean — and the most meaningful enterprise design work — remains unexplored.<br>
+          I dive with intent: reading user currents, charting information architectures, and surfacing systems that move with people. Eight years turning research into product clarity at HCL Software.</p>
+        
+        <!-- Depth Meter / Zone Indicator - now professional reusable component -->
+        <div class="depth-meter reveal in" data-d="5">
+          <div class="depth-meter__head">
+            <span class="depth-label">Current Depth</span>
+            <span class="depth-value">Epipelagic · 0–200m</span>
+          </div>
+          <div class="depth-bar">
+            <div class="depth-fill"></div>
+          </div>
+          <div class="depth-zones">
+            <span>Surface</span><span class="current">Sunlit Zone</span><span>Hadal →</span>
+          </div>
+        </div>
+
+        <div class="hero__meta reveal in" data-d="6">
+          <div><span class="k">Based in</span><span class="v">Pune / Mumbai, India</span></div>
           <div><span class="k">Practising since</span><span class="v">2014</span></div>
           <div><span class="k">Currently</span><span class="v">HCL Software</span></div>
         </div>
       </div>
-      <div class="swipe-hint"><span>Swipe</span><span class="ln"></span><span>Explore</span></div>
+      <div class="swipe-hint"><span>Swipe</span><span class="ln"></span><span>Explore the Museum</span></div>
     </section>
 
-    <!-- ===== CHAPTER 02 — PROJECTS ===== -->
+    <!-- ===== CHAPTER 02 — SELECTED WORK (MESOPELAGIC) ===== -->
     <section class="chapter chapter--light">
       <span class="chapter__no">02</span>
       <div class="chapter__inner">
-        <p class="eyebrow reveal" data-d="1">Chapter 02 — Selected Work</p>
+        <p class="eyebrow reveal" data-d="1">Chapter 02 — Mesopelagic Zone</p>
         <h2 class="reveal" data-d="2">A museum of<br>product thinking</h2>
         <p class="lede reveal" data-d="3">Enterprise platforms re-imagined around the people who use them daily —
-          from B2B commerce to AI/ML operations and identity systems.</p>
+          from B2B commerce to AI/ML operations and identity systems. Drag to explore the exhibits.</p>
 
         <div class="proj-grid">
           <a class="proj-card reveal" data-d="2" href="process.html">
@@ -102,20 +117,20 @@
           </a>
         </div>
 
-        <div class="reveal" data-d="5" style="margin-top:2.4rem">
+        <div class="reveal work-cta" data-d="5">
           <a class="btn btn--gold" href="work.html">Enter the Work Museum <span class="arr">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== CHAPTER 03 — CAREER ===== -->
+    <!-- ===== CHAPTER 03 — CAREER (BATHYPELAGIC) ===== -->
     <section class="chapter chapter--dark">
       <span class="chapter__no">03</span>
       <div class="chapter__inner">
-        <p class="eyebrow reveal in" data-d="1">Chapter 03 — The Journey</p>
-        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">Eight years,<br>one current</h2>
+        <p class="eyebrow reveal in" data-d="1">Chapter 03 — The Current</p>
+        <h2 class="reveal in" data-d="2">Eight years,<br>one steady migration</h2>
         <p class="lede reveal in" data-d="3">A steady migration deeper into enterprise UX — research-led, outcome-driven,
-          and built alongside PMs, engineers and clients.</p>
+          and built alongside PMs, engineers and clients. From surface graphic work to hadal strategy.</p>
 
         <div class="mini-tl reveal in" data-d="4">
           <div class="mtl"><span class="yr">2016</span><span class="co">Freelance</span><span class="ro">Graphic Designer</span></div>
@@ -125,46 +140,46 @@
           <div class="mtl"><span class="yr">2022</span><span class="co">HCL · Commerce</span><span class="ro">UX Analyst — Present</span></div>
         </div>
 
-        <div class="reveal in" data-d="5" style="margin-top:2.6rem">
+        <div class="reveal in" data-d="5">
           <a class="btn btn--light" href="careers.html">View full timeline <span class="arr">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== CHAPTER 04 — ABOUT ===== -->
+    <!-- ===== CHAPTER 04 — ABOUT / PHILOSOPHY (ABYSS) ===== -->
     <section class="chapter chapter--ocean">
       <span class="chapter__no">04</span>
       <div class="chapter__inner">
         <p class="eyebrow eyebrow--ocean reveal" data-d="1">Chapter 04 — Philosophy</p>
         <blockquote class="bigquote reveal" data-d="2">
-          “I’m focused on creating meaningful experiences through design.”
-          <span class="src">— Faizan Quazi</span>
+          “I’m focused on creating meaningful experiences through design.”<br>
+          <span class="src">— Faizan Quazi, Ocean Museum Curator</span>
         </blockquote>
-        <p class="lede reveal" data-d="3" style="margin-top:1.4rem">
+        <p class="lede reveal philosophy-lede" data-d="3">
           Research first. Decisions backed by segmented data, personas and usability evidence —
-          not opinion. Then design that earns its place.</p>
-        <div class="reveal" data-d="4" style="margin-top:2.2rem">
+          not opinion. Then design that earns its place in the depths.</p>
+        <div class="reveal" data-d="4">
           <a class="btn" href="about.html">Read the full story <span class="arr">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== CHAPTER 05 — CONTACT ===== -->
+    <!-- ===== CHAPTER 05 — CONTACT (HADAL) ===== -->
     <section class="chapter chapter--dark">
       <span class="chapter__no">05</span>
       <div class="chapter__inner">
-        <p class="eyebrow reveal in" data-d="1">Chapter 05 — Let’s talk</p>
-        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">Surface a<br>conversation</h2>
+        <p class="eyebrow reveal in" data-d="1">Chapter 05 — Let’s Surface</p>
+        <h2 class="reveal in" data-d="2">Begin a<br>conversation</h2>
         <div class="contact-flex">
           <ul class="contact-list reveal in" data-d="3">
             <li><span class="k">Email</span><a class="v" href="mailto:faizanquazi123@gmail.com">faizanquazi123@gmail.com</a></li>
             <li><span class="k">Phone</span><span class="v">+91 84465 56866</span></li>
-            <li><span class="k">Location</span><span class="v">Pune, Maharashtra · India</span></li>
+            <li><span class="k">Location</span><span class="v">Pune / Mumbai, Maharashtra · India</span></li>
             <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">/in/faizanquazi</a></li>
           </ul>
-          <div class="reveal in" data-d="4">
-            <p class="lede" style="color:var(--on-dark-soft)">Open to product design, UX research and identity work.</p>
-            <div style="margin-top:1.8rem; display:flex; gap:1rem; flex-wrap:wrap">
+          <div class="reveal in contact-cta" data-d="4">
+            <p class="lede contact-lede">Open to product design, UX research and identity work that goes deep.</p>
+            <div class="contact-actions">
               <a class="btn btn--gold" href="contact.html">Contact form <span class="arr">→</span></a>
               <a class="btn btn--light" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
