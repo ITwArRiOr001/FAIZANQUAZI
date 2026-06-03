@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work Museum — Faizan Quazi</title>
+<meta name="description" content="A museum of enterprise UX work: Raintree, AI/ML in CMC and the HCL Commerce UI Shell Navigation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__brand" href="index.html">Faizan&nbsp;Quazi<small>UX · Research · Product</small></a>
+  <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="nav__links">
+    <a href="index.html">Home</a><a href="work.html">Museum</a><a href="process.html">Process</a>
+    <a href="careers.html">Career</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="media media--dark">
+      <img src="assets/museum-hero.jpg" alt="Orca surfacing">
+      <div class="media__ph"><span class="ico">▣</span><span class="tag">Image</span><span class="file">assets/museum-hero.jpg</span></div>
+    </div>
+    <div class="page-hero__in">
+      <p class="eyebrow reveal in">The Work Museum</p>
+      <h1 class="reveal in" data-d="1">Enterprise UX,<br><em>exhibited</em></h1>
+      <p class="lede reveal in" data-d="2">Three bodies of work for the HCL Commerce suite — drawn directly from the
+        design files. Drag each strip sideways to move through the exhibits.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section">
+    <div class="museum-intro">
+      <div class="reveal">
+        <p class="eyebrow">Curatorial Note</p>
+        <h2 style="font-size:clamp(1.8rem,4vw,3rem); margin:1rem 0">Research → System → Ship</h2>
+      </div>
+      <p class="reveal" data-d="1" style="color:var(--text-soft)">Each exhibit traces the same method: gather segmented data
+        from the client base, map the information architecture, prototype against personas, then validate through usability
+        testing — working shoulder-to-shoulder with PMs, engineers and clients until it ships.</p>
+    </div>
+  </section>
+
+  <!-- EXHIBIT 01 — RAINTREE -->
+  <section class="section" style="padding-top:0">
+    <div class="gallery">
+      <div class="gallery__head reveal">
+        <span class="no">01</span><h3>Raintree 2021</h3>
+        <span class="tag">Enterprise Platform · UX</span>
+      </div>
+      <p class="gallery__lede reveal" data-d="1">A full enterprise application explored across desktop breakpoints —
+        dashboards, dense data listings and multi-step workflows refined for clarity at scale.</p>
+      <div class="strip reveal" data-d="2">
+        <div class="plate"><div class="media"><img src="assets/raintree-01.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/raintree-01.jpg</span></div></div><div class="plate__cap"><div><span class="t">Dashboard Overview</span><p class="desc">MacBook Pro 16″ — primary landing &amp; metrics.</p></div><span class="n">01</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/raintree-02.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/raintree-02.jpg</span></div></div><div class="plate__cap"><div><span class="t">Data Listings</span><p class="desc">High-density tables &amp; filtering states.</p></div><span class="n">02</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/raintree-03.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/raintree-03.jpg</span></div></div><div class="plate__cap"><div><span class="t">Detail Screens</span><p class="desc">Record detail &amp; navigation patterns.</p></div><span class="n">03</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/raintree-04.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/raintree-04.jpg</span></div></div><div class="plate__cap"><div><span class="t">Workflows</span><p class="desc">Multi-step task flows &amp; modals.</p></div><span class="n">04</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/raintree-05.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/raintree-05.jpg</span></div></div><div class="plate__cap"><div><span class="t">Responsive States</span><p class="desc">Layout behaviour across breakpoints.</p></div><span class="n">05</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBIT 02 — AI/ML -->
+  <section class="section" style="padding-top:0">
+    <div class="gallery">
+      <div class="gallery__head reveal">
+        <span class="no">02</span><h3>AI / ML in CMC</h3>
+        <span class="tag">HCL Commerce · Product UX</span>
+      </div>
+      <p class="gallery__lede reveal" data-d="1">Usage monitoring, model lifecycle and proactive alerting for machine-learning
+        operations inside the Commerce Management Center — turning invisible compute into a legible dashboard.</p>
+      <div class="strip reveal" data-d="2">
+        <div class="plate"><div class="media"><img src="assets/aiml-01.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/aiml-01.jpg</span></div></div><div class="plate__cap"><div><span class="t">Old / New Dashboard</span><p class="desc">Before-and-after of the AI/ML home.</p></div><span class="n">01</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/aiml-02.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/aiml-02.jpg</span></div></div><div class="plate__cap"><div><span class="t">Usage Monitoring</span><p class="desc">Storage, API &amp; training usage on dashboard.</p></div><span class="n">02</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/aiml-03.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/aiml-03.jpg</span></div></div><div class="plate__cap"><div><span class="t">Usage &amp; Overflow Alerts</span><p class="desc">Add-alert flows + overflow scenarios.</p></div><span class="n">03</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/aiml-04.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/aiml-04.jpg</span></div></div><div class="plate__cap"><div><span class="t">Warning Alerts</span><p class="desc">Threshold warnings — storage, API, training.</p></div><span class="n">04</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/aiml-05.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/aiml-05.jpg</span></div></div><div class="plate__cap"><div><span class="t">Model Management</span><p class="desc">Upload, train, run &amp; pause model lifecycle.</p></div><span class="n">05</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBIT 03 — UI SHELL NAVIGATION -->
+  <section class="section" style="padding-top:0">
+    <div class="gallery">
+      <div class="gallery__head reveal">
+        <span class="no">03</span><h3>UI Shell Navigation</h3>
+        <span class="tag">HCL Commerce · IA &amp; Usability</span>
+      </div>
+      <p class="gallery__lede reveal" data-d="1">A ground-up rethink of the Commerce shell — login, top &amp; side navigation and core
+        modules — validated through a structured usability test before rollout.</p>
+      <div class="strip reveal" data-d="2">
+        <div class="plate"><div class="media"><img src="assets/shell-01.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/shell-01.jpg</span></div></div><div class="plate__cap"><div><span class="t">Old Navigation</span><p class="desc">Baseline state before redesign.</p></div><span class="n">01</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/shell-02.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/shell-02.jpg</span></div></div><div class="plate__cap"><div><span class="t">New Login &amp; Change Password</span><p class="desc">Refreshed entry &amp; account flows.</p></div><span class="n">02</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/shell-03.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/shell-03.jpg</span></div></div><div class="plate__cap"><div><span class="t">UI Shell — Top Nav</span><p class="desc">Storemanager, Marketplace, Search, Catalogue.</p></div><span class="n">03</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/shell-04.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/shell-04.jpg</span></div></div><div class="plate__cap"><div><span class="t">UI Shell — Side Nav</span><p class="desc">Collapsed &amp; expanded module navigation.</p></div><span class="n">04</span></div></div>
+        <div class="plate"><div class="media"><img src="assets/shell-05.jpg" alt=""><div class="media__ph"><span class="ico">▣</span><span class="tag">Figma frame</span><span class="file">assets/shell-05.jpg</span></div></div><div class="plate__cap"><div><span class="t">Usability Test &amp; Procedure</span><p class="desc">Full session procedure &amp; findings.</p></div><span class="n">05</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="text-align:center">
+    <p class="eyebrow reveal">Behind the work</p>
+    <h2 class="reveal" data-d="1" style="font-size:clamp(1.8rem,4vw,3rem); margin:1rem 0 1.8rem">See how it’s made</h2>
+    <div class="reveal" data-d="2"><a class="btn btn--gold" href="process.html">Enter the Process room <span class="arr">→</span></a></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot__in">
+      <h3>Let’s design something <em>that lasts.</em></h3>
+      <nav class="foot__nav">
+        <a href="work.html">Museum</a><a href="process.html">Process</a><a href="careers.html">Career</a>
+        <a href="about.html">About</a><a href="contact.html">Contact</a>
+        <a href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+    <div class="foot__legal"><span>© 2014–2026 Faizan Quazi · User Experience Analyst</span><span>Pune, Maharashtra · India</span></div>
+  </footer>
+</div>
+
+<div class="copyright">
+  <span>© 2014–2026 Faizan Quazi</span><span class="dot"></span>
+  <a href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
