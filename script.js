@@ -171,3 +171,81 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+/* =====================================================================
+   FAIZAN QUAZI — UX PORTFOLIO
+   Shared interactive behaviour
+   ===================================================================== */
+
+(function() {
+  "use strict";
+  
+  // ============================================
+  // SCROLL PROGRESS INDICATOR
+  // ============================================
+  function createProgressBar() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+    return progressBar;
+  }
+  
+  const progressBar = createProgressBar();
+  
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${scrollPercent}%`;
+  }
+  
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  // Initial calculation
+  updateProgress();
+  
+  // ============================================
+  // SMART NAV (Blur + Auto-hide + Compact)
+  // ============================================
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  
+  const updateNav = () => {
+    const currentScrollY = window.scrollY;
+    
+    // Add blur + compact style when scrolled
+    if (currentScrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    
+    // Smart hide/show (shutter up when scrolling down)
+    if (currentScrollY > lastScrollY && currentScrollY > 140) {
+      nav.classList.add('nav--hidden');
+    } else {
+      nav.classList.remove('nav--hidden');
+    }
+    
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+  
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateNav();
+        updateProgress();
+      });
+      ticking = true;
+    }
+  };
+  
+  window.addEventListener('scroll', onScroll, { passive: true });
+  
+  // Initial states
+  updateNav();
+  updateProgress();
+})();
