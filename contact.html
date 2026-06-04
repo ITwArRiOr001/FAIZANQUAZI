@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Contact — Faizan Quazi</title>
-<meta name="description" content="Contact Faizan Quazi — UX Analyst based in Pune, India.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Faizan Quazi</title>
+  <meta name="description" content="Contact Faizan Quazi — UX Analyst based in Pune, India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -16,56 +16,117 @@
   <a class="nav__brand" href="index.html">Faizan&nbsp;Quazi<small>UX · Research · Product</small></a>
   <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav class="nav__links">
-    <a href="index.html">Home</a><a href="work.html">Museum</a><a href="process.html">Process</a>
-    <a href="careers.html">Career</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="work.html">Museum</a>
+    <a href="process.html">Process</a>
+    <a href="careers.html">Career</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
   </nav>
 </header>
 
 <div class="page">
 
-  <section class="page-hero">
-    <div class="media media--dark">
-      <img src="assets/contact-hero.jpg" alt="Calm ocean surface">
-      <div class="media__ph"><span class="ico">▣</span><span class="tag">Image</span><span class="file">assets/contact-hero.jpg</span></div>
-    </div>
+  <!-- HERO -->
+  <section class="page-hero page-hero--dark">
     <div class="page-hero__in">
-      <p class="eyebrow reveal in">Contact</p>
-      <h1 class="reveal in" data-d="1">Start a<br><em>conversation</em></h1>
-      <p class="lede reveal in" data-d="2">Product design, UX research or identity work — I’d love to hear about it.</p>
+      <div class="hero-content">
+        <p class="eyebrow reveal in">CONTACT</p>
+        <h1 class="reveal in" data-d="1">
+          Start a<br>
+          <span class="highlight">conversation</span>
+        </h1>
+        <p class="lede reveal in" data-d="2">
+          Product design, UX research or identity work — I’d love to hear about it.
+        </p>
+      </div>
     </div>
   </section>
 
+  <!-- MAIN CONTENT -->
   <section class="section">
     <div class="contact-grid">
-      <!-- FORM -->
-      <div class="reveal">
-        <p class="eyebrow">Send a message</p>
-        <h2 style="font-size:clamp(1.7rem,3.6vw,2.6rem); margin:.8rem 0 2rem">Tell me what you’re building</h2>
-        <div class="form" data-mailto>
-          <div class="field"><label>Name</label><input name="name" type="text" placeholder="Your name"></div>
-          <div class="field"><label>Email</label><input name="email" type="email" placeholder="you@example.com"></div>
-          <div class="field"><label>Message</label><textarea name="message" placeholder="A few words about your project…"></textarea></div>
-          <div><button class="btn btn--gold" data-send type="button">Send message <span class="arr">→</span></button></div>
-        </div>
-      </div>
 
-      <!-- DETAILS + MAP -->
-      <div class="contact-side reveal" data-d="1">
+    <!-- FORM -->
+<div class="contact-form reveal">
+  <p class="eyebrow">Send a message</p>
+  <h2>Tell me what you’re building</h2>
+  
+  <form id="contactForm" class="form" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <span class="error-message" id="nameError"></span>
+    </div>
+    
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <span class="error-message" id="emailError"></span>
+    </div>
+    
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="A few words about your project…" required></textarea>
+      <span class="error-message" id="messageError"></span>
+    </div>
+    
+    <button type="submit" class="btn btn--gold" id="submitBtn">
+      Send message <span class="arr">→</span>
+    </button>
+  </form>
+  
+  <!-- SUCCESS MESSAGE (Moved OUTSIDE the form) -->
+  <div id="successMessage" class="success-message" style="display: none;">
+    <div class="success-content">
+      <h3>Thank you.</h3>
+      <p>Your message has been received. I’ll get back to you within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
+      <!-- CONTACT INFO + MAP -->
+      <div class="contact-info reveal" data-d="1">
         <ul class="contact-list">
-          <li><span class="k">Email</span><a class="v" href="mailto:faizanquazi123@gmail.com">faizanquazi123@gmail.com</a></li>
-          <li><span class="k">Phone</span><a class="v" href="tel:+918446556866">+91 84465 56866</a></li>
-          <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">/in/faizanquazi</a></li>
+          <li>
+            <span class="k">Email</span>
+            <a href="mailto:faizanquazi123@gmail.com" class="v">faizanquazi123@gmail.com</a>
+          </li>
+          <li>
+            <span class="k">Phone</span>
+            <a href="tel:+918446556866" class="v">+91 84465 56866</a>
+          </li>
+          <li>
+            <span class="k">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/faizanquazi/" target="_blank" class="v">/in/faizanquazi</a>
+          </li>
         </ul>
 
-        <div class="map" style="margin-top:2rem">
-          <div class="media"><img src="assets/map-pune.jpg" alt="Pune location">
-            <div class="media__ph"><span class="ico">◉</span><span class="tag">Map</span><span class="file">assets/map-pune.jpg</span></div></div>
-          <div class="loc"><span class="pin">◉</span>
-            <div><span class="v" style="font-family:var(--display); font-size:1.3rem">Pune, Maharashtra</span>
-            <p style="font-size:.8rem; color:var(--text-soft)">India · open to remote &amp; on-site</p></div></div>
-          <p style="margin-top:1rem"><a href="https://www.google.com/maps/place/Pune,+Maharashtra" target="_blank" rel="noopener" style="font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--gold-soft); padding-bottom:2px">Open in Maps →</a></p>
+        <div class="map-wrapper">
+          <div class="media map-media">
+            <img src="assets/map-pune.jpg" alt="Pune, Maharashtra">
+            <div class="media__ph">
+              <span class="ico">◉</span>
+              <span class="tag">Map</span>
+              <span class="file">assets/map-pune.jpg</span>
+            </div>
+          </div>
+
+          <div class="map-info">
+            <div class="loc">
+              <span class="pin">◉</span>
+              <div>
+                <span class="v" style="font-family:var(--display); font-size:1.25rem">Pune, Maharashtra</span>
+                <p>India · Open to remote &amp; on-site</p>
+              </div>
+            </div>
+            <a href="https://www.google.com/maps/place/Pune,+Maharashtra" target="_blank" class="map-link">
+              Open in Maps →
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -73,13 +134,20 @@
     <div class="foot__in">
       <h3>Let’s make it <em>meaningful.</em></h3>
       <nav class="foot__nav">
-        <a href="work.html">Museum</a><a href="process.html">Process</a><a href="careers.html">Career</a>
-        <a href="about.html">About</a><a href="contact.html">Contact</a>
+        <a href="work.html">Museum</a>
+        <a href="process.html">Process</a>
+        <a href="careers.html">Career</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
         <a href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
       </nav>
     </div>
-    <div class="foot__legal"><span>© 2014–2026 Faizan Quazi · User Experience Analyst</span><span>Pune, Maharashtra · India</span></div>
+    <div class="foot__legal">
+      <span>© User Experience Analyst · UX Research</span>
+      <span>Pune, Maharashtra · India</span>
+    </div>
   </footer>
+
 </div>
 
 <div class="copyright">
@@ -88,5 +156,6 @@
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
