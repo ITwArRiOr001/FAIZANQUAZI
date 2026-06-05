@@ -3,6 +3,7 @@
    - Horizontal "Tinder swipe" chapter pager (index)
    - Chapter 02 scrolls vertically; only at its edges does the pager move
    - Hero: HD orca still + click-to-play video
+       · leaving chapter 01 stops + rewinds the video and restores the still
    - Self-loading media · reveals · mobile nav · contact form
    ===================================================================== */
 (function () {
@@ -78,18 +79,21 @@
   }
 
   /* -----------------------------------------------------------------
-     5. HERO VIDEO — HD still shown until the play button is pressed
+     5. HERO VIDEO — HD still shown until the play button is pressed.
+     `resetHeroVideo` is exposed so the pager can stop it on leave.
   ------------------------------------------------------------------ */
+  var heroMedia = null, heroVideo = null;
+
   function wireHeroVideo() {
-    var media = $(".hero-media");
+    heroMedia = $(".hero-media");
     var btn   = $(".hero-play");
-    if (!media || !btn) return;
-    var vid = media.querySelector("video");
-    if (!vid) return;
+    if (!heroMedia || !btn) return;
+    heroVideo = heroMedia.querySelector("video");
+    if (!heroVideo) return;
 
     var start = function () {
-      media.classList.add("playing");
-      var p = vid.play();
+      heroMedia.classList.add("playing");
+      var p = heroVideo.play();
       if (p && p.catch) p.catch(function () {}); // ignore autoplay-policy rejections
     };
 
@@ -97,10 +101,18 @@
       e.preventDefault(); e.stopPropagation(); start();
     });
     // tap the video to pause / resume after it has started
-    vid.addEventListener("click", function (e) {
+    heroVideo.addEventListener("click", function (e) {
       e.stopPropagation();
-      if (vid.paused) start(); else vid.pause();
+      if (heroVideo.paused) start(); else heroVideo.pause();
     });
+  }
+
+  // Stop the film, rewind it, and bring back the still + play button.
+  function resetHeroVideo() {
+    if (!heroVideo) return;
+    heroVideo.pause();
+    try { heroVideo.currentTime = 0; } catch (e) {}
+    if (heroMedia) heroMedia.classList.remove("playing");
   }
 
   /* -----------------------------------------------------------------
@@ -117,6 +129,12 @@
     var idx       = 0;
     var animating = false;
 
+    // index of the hero chapter (the one that holds the play-to-watch film)
+    var heroIdx = panels.indexOf
+      ? panels.indexOf($(".chapter.hero", track))
+      : 0;
+    if (heroIdx < 0) heroIdx = 0;
+
     function go(n) {
       n = Math.max(0, Math.min(total - 1, n));
       idx = n;
@@ -124,6 +142,10 @@
       track.style.transform = "translateX(" + (-idx * 100) + "vw)";
       dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
       if (bar) bar.style.width = ((idx) / (total - 1) * 100) + "%";
+
+      // leaving the hero → stop the film and restore the orca still
+      if (idx !== heroIdx) resetHeroVideo();
+
       // always enter a chapter at the top of its (possibly scrollable) content
       var tin = panels[idx] && panels[idx].querySelector(".chapter__inner");
       if (tin) tin.scrollTop = 0;
