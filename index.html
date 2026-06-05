@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Faizan Quazi — User Experience Analyst</title>
-<meta name="description" content="Faizan Quazi · UX Analyst, Designer & Researcher. A museum of product thinking, research and craft.">
+<meta name="description" content="Faizan Quazi — User Experience Analyst, Designer and Researcher. Enterprise UX work, process and career.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -42,68 +42,149 @@
 <main class="pager">
   <div class="pager__track">
 
-    <!-- ===== CHAPTER 01 — INTRO ===== -->
+    <!-- ===== CHAPTER 01 — INTRO (HD orca still → click play to run video) ===== -->
     <section class="chapter hero chapter--dark">
-      <div class="media media--dark">
-        <video autoplay muted loop playsinline poster="assets/hero-orca-poster.jpg">
+      <div class="media media--dark hero-media">
+        <!-- HD orca still shown until the visitor presses play -->
+        <img class="hero-poster" src="assets/hero-orca-poster.jpg" alt="Orca in deep water">
+        <!-- Video stays hidden + paused until play is clicked -->
+        <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero-orca-poster.jpg">
           <source src="assets/orca-hero.mp4" type="video/mp4">
         </video>
+        <!-- Placeholder shown only if the still image is missing -->
         <div class="media__ph">
-          <span class="ico">▶</span><span class="tag">Background Video</span>
-          <span class="file">assets/orca-hero.mp4 &nbsp;·&nbsp; fallback: assets/hero-orca-poster.jpg</span>
+          <span class="ico">▣</span><span class="tag">HD Orca still</span>
+          <span class="file">assets/hero-orca-poster.jpg &nbsp;·&nbsp; video: assets/orca-hero.mp4</span>
         </div>
       </div>
+
+      <!-- Play button (sits above everything; hides itself once playing) -->
+      <button class="hero-play" type="button" aria-label="Play background video">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+      </button>
+
       <span class="chapter__no">01</span>
       <div class="chapter__inner">
-        <h1 class="reveal in" data-d="2">Designing with<br><em>intent &amp; depth</em></h1>
+        <h1 class="reveal in" data-d="2">Designing clarity into<br><em>complex products</em></h1>
         <p class="role reveal in" data-d="3">User Experience Analyst · Designer · Researcher</p>
-        <p class="lede reveal in" data-d="4">Like the orca — intelligent, strategic, precise — I read the currents of how people work,
-          then design systems that move with them. Eight years turning research into product clarity.</p>
+        <p class="lede reveal in" data-d="4">I help enterprise teams turn research into products that feel simple to use —
+          improving B2B usability across the HCL Commerce and Unica platforms for nearly a decade.</p>
         <div class="hero__meta reveal in" data-d="5">
           <div><span class="k">Based in</span><span class="v">Pune, India</span></div>
-          <div><span class="k">Practising since</span><span class="v">2014</span></div>
+          <div><span class="k">Practising since</span><span class="v">2016</span></div>
           <div><span class="k">Currently</span><span class="v">HCL Software</span></div>
         </div>
       </div>
       <div class="swipe-hint"><span>Swipe</span><span class="ln"></span><span>Explore</span></div>
     </section>
 
-    <!-- ===== CHAPTER 02 — PROJECTS ===== -->
-    <section class="chapter chapter--light">
+    <!-- ===== CHAPTER 02 — MUSEUM (scrolls internally on every screen) ===== -->
+    <section class="chapter chapter--light" id="ch2">
       <span class="chapter__no">02</span>
       <div class="chapter__inner">
-        <p class="eyebrow reveal" data-d="1">Selected Work</p>
-        <h2 class="reveal" data-d="2">A museum of<br>product thinking</h2>
-        <p class="lede reveal" data-d="3"><br>Enterprise platforms re-imagined around the people who use them daily —
-          from B2B commerce to AI/ML operations and identity systems.</p>
 
-        <div class="proj-grid">
-          <a class="proj-card reveal" data-d="2" href="process.html">
+        <div class="reveal">
+          <p class="eyebrow">Selected Work</p>
+          <h2>A museum of product thinking</h2>
+          <p class="lede">Enterprise systems crafted with research, precision and care. Every tile opens a real Figma prototype.</p>
+        </div>
+
+        <!-- 6 Figma tiles: 4 Museum + 2 Process -->
+        <div class="proj-grid reveal in" data-d="4">
+
+          <!-- 1. Raintree 2021 -->
+          <a class="proj-card" href="work.html">
+            <div class="media">
+              <img src="assets/work-raintree.jpg" alt="Raintree 2021 dashboard">
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
+            </div>
+            <div class="proj-card__body">
+              <span class="tag">Museum • 2021</span>
+              <h3>Raintree 2021</h3>
+              <p>Legacy system redesign — dashboards, data tables, detail views.</p>
+              <span class="arr">Open prototype →</span>
+            </div>
+          </a>
+
+          <!-- 2. Identity Services -->
+          <a class="proj-card" href="work.html">
             <div class="media">
               <img src="assets/work-identity.jpg" alt="Identity Services">
-              <div class="media__ph"><span class="ico">▣</span><span class="tag">Image</span><span class="file">assets/work-identity.jpg</span></div>
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
             </div>
-            <p class="meta">HCL Commerce</p><h3>Identity Services</h3>
+            <div class="proj-card__body">
+              <span class="tag">Museum • Identity</span>
+              <h3>Identity Services</h3>
+              <p>Persona management, permissions, access control &amp; user flows.</p>
+              <span class="arr">Open prototype →</span>
+            </div>
           </a>
-          <a class="proj-card reveal" data-d="3" href="work.html">
+
+          <!-- 3. AI / ML in CMC -->
+          <a class="proj-card" href="work.html">
             <div class="media">
               <img src="assets/work-aiml.jpg" alt="AI/ML in CMC">
-              <div class="media__ph"><span class="ico">▣</span><span class="tag">Image</span><span class="file">assets/work-aiml.jpg</span></div>
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
             </div>
-            <p class="meta">HCL Commerce</p><h3>AI / ML in CMC</h3>
+            <div class="proj-card__body">
+              <span class="tag">Museum • AI/ML</span>
+              <h3>AI / ML in CMC</h3>
+              <p>Model monitoring, alerts, usage dashboards &amp; governance.</p>
+              <span class="arr">Open prototype →</span>
+            </div>
           </a>
-          <a class="proj-card reveal" data-d="4" href="work.html">
+
+          <!-- 4. UI Shell Navigation -->
+          <a class="proj-card" href="work.html">
             <div class="media">
-              <img src="assets/work-shell.jpg" alt="UI Shell Navigation">
-              <div class="media__ph"><span class="ico">▣</span><span class="tag">Image</span><span class="file">assets/work-shell.jpg</span></div>
+              <img src="assets/work-uishell.jpg" alt="UI Shell Navigation">
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
             </div>
-            <p class="meta">HCL Commerce</p><h3>UI Shell Navigation</h3>
+            <div class="proj-card__body">
+              <span class="tag">Museum • Navigation</span>
+              <h3>UI Shell Navigation</h3>
+              <p>Old vs new navigation system with usability testing insights.</p>
+              <span class="arr">Open prototype →</span>
+            </div>
           </a>
+
+          <!-- 5. Design Systems (Process) -->
+          <a class="proj-card process-tile" href="process.html">
+            <div class="media">
+              <img src="assets/process-designsystem.jpg" alt="Design Systems">
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
+            </div>
+            <div class="proj-card__body">
+              <span class="tag">Process • Systems</span>
+              <h3>Design Systems</h3>
+              <p>Tokens, components, patterns and governance framework.</p>
+              <span class="arr">View in Process →</span>
+            </div>
+          </a>
+
+          <!-- 6. Few Design Components (Process) -->
+          <a class="proj-card process-tile" href="process.html">
+            <div class="media">
+              <img src="assets/process-components.jpg" alt="Design Components">
+              <div class="media__ph"><span class="ico">▣</span><span class="tag">Figma</span></div>
+            </div>
+            <div class="proj-card__body">
+              <span class="tag">Process • Components</span>
+              <h3>Design Components</h3>
+              <p>Steppers, inputs, cards, file uploads, progress &amp; filters.</p>
+              <span class="arr">View in Process →</span>
+            </div>
+          </a>
+
         </div>
 
-        <div class="reveal" data-d="5" style="margin-top:2.4rem">
-          <a class="btn btn--gold" href="work.html">Enter the Work Museum <span class="arr">→</span></a>
+        <!-- Bottom CTA — reaching this is what unlocks the move to chapter 03 -->
+        <div class="reveal" style="text-align:center; margin-top:2rem;">
+          <a href="work.html" class="btn btn--gold">Enter the full Museum <span class="arr">→</span></a>
         </div>
+
+        <p class="ch2-end-hint">Keep scrolling to continue →</p>
+
       </div>
     </section>
 
@@ -112,7 +193,7 @@
       <span class="chapter__no">03</span>
       <div class="chapter__inner">
         <p class="eyebrow reveal in" data-d="1">The Journey</p>
-        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">Eight years.<br>One destination.</h2>
+        <h2 class="reveal in" data-d="2" style="color:var(--on-dark)">A decade<br>of design work.</h2>
         <p class="lede reveal in" data-d="3">A deliberate path deeper into enterprise UX — research-first, outcome-driven,
           and shaped through close collaboration with PMs, engineers, and clients across complex platforms.</p>
 
@@ -158,6 +239,7 @@
         <div class="reveal in" data-d="5" style="margin-top:2.8rem; display: flex; justify-content: flex-end;">
   <a class="btn btn--light" href="careers.html">View full timeline <span class="arr">→</span></a>
 </div>
+      </div>
     </section>
 
     <!-- ===== CHAPTER 04 — EXPERTISE (Premium Interactive Grid) ===== -->
@@ -171,14 +253,13 @@
             <span class="src">— Faizan Quazi</span>
           </blockquote>
           <p class="lede reveal" data-d="3" style="margin-top:1.4rem">
-            Research first. Decisions backed by segmented data, personas and usability evidence —
-            not opinion. Then design that earns its place.</p>
+            Research first — every decision is backed by segmented data, personas, and usability evidence.
+            Then design that holds up in testing.</p>
           <div class="reveal" data-d="4" style="margin-top:2.2rem">
             <a class="btn" href="about.html">Read the full story <span class="arr">→</span></a>
           </div>
         </div>
 
-        <!-- Interactive Expertise Grid with Icon Placeholders -->
         <!-- Interactive Expertise Grid with Icon Placeholders (Aligned with Resume) -->
 <div class="expertise-grid reveal" data-d="2">
   <div class="expertise-card">
@@ -238,24 +319,24 @@
     </div>
   </div>
 </div>
+      </div>
 </section>
 
-    <!-- ===== CHAPTER 05 — CONTACT ===== -->
     <!-- ===== CHAPTER 05 — CONTACT (Bright + Professional) ===== -->
 <section class="chapter chapter--contact">
   <span class="chapter__no">05</span>
-  
+
   <!-- Background Map -->
   <div class="contact-bg-map">
     <img src="assets/pune-map.jpg" alt="Pune City Map">
     <div class="contact-bg-overlay"></div>
   </div>
-  
+
   <div class="chapter__inner contact-inner">
     <div class="contact-content">
       <p class="eyebrow reveal in" data-d="1">Let’s talk</p>
-      <h2 class="reveal in" data-d="2">Surface a<br>conversation</h2>
-      
+      <h2 class="reveal in" data-d="2">Let’s work<br>together</h2>
+
       <div class="contact-flex reveal in" data-d="3">
         <ul class="contact-list">
           <li>
@@ -275,7 +356,7 @@
             <a class="v" href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">/in/faizanquazi</a>
           </li>
         </ul>
-        
+
         <div class="contact-cta">
           <p class="lede">Open to product design, UX research and identity work.</p>
           <div class="contact-buttons">
@@ -293,7 +374,7 @@
 
 <!-- COPYRIGHT (corner, every page) -->
 <div class="copyright">
-  <span>© 2014–2026 Faizan Quazi</span><span class="dot"></span>
+  <span>© 2016–2026 Faizan Quazi</span><span class="dot"></span>
   <a href="https://www.linkedin.com/in/faizanquazi/" target="_blank" rel="noopener">LinkedIn</a>
 </div>
 
