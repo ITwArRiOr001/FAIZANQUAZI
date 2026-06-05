@@ -800,3 +800,87 @@ body::before{
   .quote-card,.edu-item{ transition:none; }
   .scroll-line::after,.swipe-hint .ln::after,.hero-play::after{ animation:none; }
 }
+/* =====================================================================
+   GLOBAL MEDIA-TILE SYSTEM  (append to styles.css, end of file)
+   Goal: every PNG export tile shows the WHOLE image centred, gets an
+   expand-to-lightbox control, and scrolls smoothly. Applies to every
+   .plate (process + work strips) and index .proj-card automatically —
+   no per-tile markup. Drop images into work.html and it just works.
+   ===================================================================== */
+
+/* 1 · WHOLE EXPORT VISIBLE, CENTRED (no crop) for UI/Figma tiles only.
+   Photo backgrounds (hero, page-hero, map, portrait) keep object-fit:cover. */
+.plate .media,
+.proj-card .media{
+  background:var(--warm-white-2);
+  padding:clamp(.4rem, 1.4%, .9rem);
+}
+.plate .media img,
+.proj-card .media img{
+  object-fit:contain;
+  object-position:center;
+}
+
+/* 2 · SCROLL PERFORMANCE
+   - content-visibility skips painting off-screen tiles (huge on long strips)
+   - contain isolates each media's repaints
+   - stop animating the expensive box-shadow on hover (keep the cheap transform) */
+.strip .plate{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 360px;
+}
+.plate .media,
+.proj-card .media{ contain:layout paint; }
+.proj-card .media{ transition:none; }
+.proj-card:hover .media{ box-shadow:0 30px 55px -30px rgba(20,19,15,.5); }
+
+/* 3 · EXPAND AFFORDANCE (button injected by script.js) */
+.media-zoom{
+  position:absolute; top:.6rem; right:.6rem; z-index:6;
+  width:34px; height:34px; border-radius:9px;
+  display:grid; place-items:center;
+  color:#fff; background:rgba(20,19,15,.6);
+  border:1px solid rgba(255,255,255,.22);
+  opacity:0; transform:translateY(-4px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+  cursor:zoom-in;
+}
+.media-zoom svg{ width:16px; height:16px; }
+.media:hover .media-zoom,
+.media:focus-within .media-zoom{ opacity:1; transform:none; }
+.media-zoom:hover{ background:var(--gold); color:var(--charcoal); }
+.media:not(.is-loaded) .media-zoom{ display:none; }   /* hide until image loads */
+.plate .media{ cursor:zoom-in; }                        /* whole gallery tile is zoomable */
+@media (hover:none){ .media-zoom{ opacity:1; transform:none; } }  /* always show on touch */
+
+/* 4 · LIGHTBOX (single shared overlay built by script.js) */
+.lightbox{
+  position:fixed; inset:0; z-index:1000; display:none;
+  align-items:center; justify-content:center; padding:clamp(1rem, 4vw, 3rem);
+  background:rgba(12,11,8,.86);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  opacity:0; transition:opacity .28s var(--ease);
+}
+.lightbox.open{ display:flex; }
+.lightbox.show{ opacity:1; }
+.lightbox__img{
+  max-width:92vw; max-height:88vh; width:auto; height:auto;
+  object-fit:contain; border-radius:10px; background:#fff;
+  box-shadow:0 40px 120px -30px rgba(0,0,0,.7);
+  transform:scale(.97); transition:transform .28s var(--ease);
+}
+.lightbox.show .lightbox__img{ transform:none; }
+.lightbox__close{
+  position:absolute; top:1rem; right:1.1rem; width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center; color:#fff; font-size:1.5rem; line-height:1;
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28);
+  transition:background .3s var(--ease), color .3s var(--ease); cursor:pointer;
+}
+.lightbox__close:hover{ background:var(--gold-pale); color:var(--charcoal); }
+.lightbox__cap{
+  position:absolute; bottom:1.1rem; left:0; right:0; text-align:center;
+  color:var(--on-dark-soft); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+}
+@media (prefers-reduced-motion:reduce){
+  .lightbox, .lightbox__img, .media-zoom{ transition:none; }
+}
