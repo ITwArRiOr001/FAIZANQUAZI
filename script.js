@@ -372,3 +372,88 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+/* =====================================================================
+   GLOBAL: image tiles — lazy/async decode, expand button, lightbox.
+   Append to script.js (end of file). Auto-applies to every .plate and
+   .proj-card media on ANY page (process now, work later) — no markup.
+   ===================================================================== */
+(function () {
+  "use strict";
+  function ready(fn){ if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn); else fn(); }
+
+  ready(function () {
+    var EXPAND_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>';
+    var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
+
+    /* one shared lightbox for the whole site */
+    var lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.innerHTML =
+      '<button class="lightbox__close" type="button" aria-label="Close">&times;</button>' +
+      '<img class="lightbox__img" alt="">' +
+      '<div class="lightbox__cap"></div>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector(".lightbox__img");
+    var lbCap = lb.querySelector(".lightbox__cap");
+    var lbClose = lb.querySelector(".lightbox__close");
+
+    function open(src, cap) {
+      if (!src) return;
+      lbImg.src = src; lbImg.alt = cap || ""; lbCap.textContent = cap || "";
+      lb.classList.add("open");
+      document.body.style.overflow = "hidden";
+      raf(function () { lb.classList.add("show"); });
+    }
+    function close() {
+      lb.classList.remove("show");
+      document.body.style.overflow = "";
+      setTimeout(function () { lb.classList.remove("open"); lbImg.removeAttribute("src"); }, 280);
+    }
+    lbClose.addEventListener("click", close);
+    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && lb.classList.contains("open")) close();
+    });
+
+    function captionFor(box) {
+      var plate = box.closest(".plate");
+      var t = plate && plate.querySelector(".plate__cap .t");
+      if (t) return t.textContent.trim();
+      var card = box.closest(".proj-card");
+      var h = card && card.querySelector("h3");
+      return h ? h.textContent.trim() : "";
+    }
+
+    /* wire every image tile on the page */
+    var tiles = [].slice.call(document.querySelectorAll(".plate .media, .proj-card .media"));
+    tiles.forEach(function (box) {
+      var img = box.querySelector("img");
+      if (!img) return;
+
+      /* perf: defer load + decode off the main thread */
+      if (!img.getAttribute("loading"))  img.setAttribute("loading", "lazy");
+      if (!img.getAttribute("decoding")) img.setAttribute("decoding", "async");
+
+      /* expand button */
+      if (!box.querySelector(".media-zoom")) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "media-zoom";
+        b.setAttribute("aria-label", "Expand image");
+        b.innerHTML = EXPAND_SVG;
+        box.appendChild(b);
+        b.addEventListener("click", function (e) {
+          e.preventDefault(); e.stopPropagation();     /* don't follow a card link */
+          open(img.currentSrc || img.src, captionFor(box));
+        });
+      }
+
+      /* whole-tile zoom on galleries (.plate) — but never inside a card <a> */
+      if (box.closest(".plate") && !box.closest("a")) {
+        box.addEventListener("click", function () {
+          open(img.currentSrc || img.src, captionFor(box));
+        });
+      }
+    });
+  });
+})();
