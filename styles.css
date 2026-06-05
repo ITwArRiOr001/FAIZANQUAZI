@@ -1678,30 +1678,51 @@ body::before{
 }
 
 /* Background Map */
+
 .contact-bg-map {
+  
   position: absolute;
+  
   inset: 0;
+  
   z-index: 0;
-  opacity: 0.18;
+  
+  opacity: 0.45;
+  /* was 0.18 — main visibility knob (0.30 subtle … 0.55 bold) */
+  
 }
 
 .contact-bg-map img {
+  
   width: 100%;
+  
   height: 100%;
+  
   object-fit: cover;
-  filter: grayscale(20%) contrast(1.1);
+  
+  filter: grayscale(15%) contrast(1.06);
+  
 }
 
 .contact-bg-overlay {
+  
   position: absolute;
+  
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(248, 244, 235, 0.75) 0%,
-    rgba(248, 244, 235, 0.92) 45%,
-    rgba(248, 244, 235, 0.98) 70%
-  );
+  
+  background: linear-gradient(to bottom,
+      
+      rgba(248, 244, 235, 0.40) 0%,
+      
+      rgba(248, 244, 235, 0.58) 50%,
+      
+      rgba(248, 244, 235, 0.74) 100%
+      /* was 0.75→0.98, lightened so map shows through */
+      
+    );
+  
   z-index: 1;
+  
 }
 
 /* Content */
@@ -1766,14 +1787,14 @@ body::before{
   }
 
   .contact-bg-map {
-    opacity: 0.12;
+    opacity: 0.30;          /* was 0.12 */
   }
 
   .contact-bg-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(248, 244, 235, 0.88) 0%,
-      rgba(248, 244, 235, 0.96) 60%
+      rgba(248, 244, 235, 0.62) 0%,
+      rgba(248, 244, 235, 0.82) 60%
     );
   }
 }
