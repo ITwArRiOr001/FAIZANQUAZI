@@ -1417,3 +1417,14 @@ body::before{
     gap: 3rem;
   }
 }
+/* Target the expertise section more precisely */
+.expertise-grid {
+  margin-right: 1.5rem;           /* Push the grid slightly left */
+}
+
+/* Or if you want to move the whole left+right block */
+.about-preview {                  /* This seems to be the parent container */
+  padding-right: 3rem;
+  max-width: 1450px;
+  margin: 0 auto;
+}
