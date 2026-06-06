@@ -209,9 +209,30 @@
     }, { passive: true });
     track.addEventListener("touchend", function (e) {
       if (!dragging) return; dragging = false;
+      if (animating) return;
       var dx = e.changedTouches[0].clientX - sx;
       var dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) go(idx + (dx < 0 ? 1 : -1));
+      var H = 55;   // swipe distance threshold
+
+      // 1) horizontal swipe → page either way, AT ANY POINT (even mid-scroll)
+      if (Math.abs(dx) > H && Math.abs(dx) > Math.abs(dy)) {
+        go(idx + (dx < 0 ? 1 : -1));
+        return;
+      }
+      // 2) vertical swipe → continue the scroll INTO the next/prev chapter
+      //    once the current chapter has been scrolled to its edge.
+      if (Math.abs(dy) > H && Math.abs(dy) > Math.abs(dx)) {
+        var inner = activeInner();
+        var scrollable = inner && inner.scrollHeight > inner.clientHeight + 4;
+        if (!scrollable) {                       // short chapter → swipe just pages
+          go(idx + (dy < 0 ? 1 : -1));
+          return;
+        }
+        var atTop    = inner.scrollTop <= 2;
+        var atBottom = inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 2;
+        if (dy < 0 && atBottom) go(idx + 1);     // swiped up at the bottom → next
+        else if (dy > 0 && atTop) go(idx - 1);   // swiped down at the top → previous
+      }
     }, { passive: true });
 
     /* mouse / trackpad DRAG to swipe chapters (desktop). Touch keeps its own
