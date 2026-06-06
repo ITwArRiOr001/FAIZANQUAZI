@@ -54,9 +54,12 @@
   function wireNav() {
     var nav = $(".nav"), burger = $(".nav__burger");
     if (!nav || !burger) return;
-    burger.addEventListener("click", function () { nav.classList.toggle("open"); });
+    burger.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      document.body.classList.toggle("nav-open", open);   // lock page scroll behind the overlay
+    });
     $$(".nav__links a").forEach(function (a) {
-      a.addEventListener("click", function () { nav.classList.remove("open"); });
+      a.addEventListener("click", function () { nav.classList.remove("open"); document.body.classList.remove("nav-open"); });
     });
   }
 
@@ -210,6 +213,63 @@
       var dy = e.changedTouches[0].clientY - sy;
       if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) go(idx + (dx < 0 ? 1 : -1));
     }, { passive: true });
+
+    /* mouse / trackpad DRAG to swipe chapters (desktop). Touch keeps its own
+       handler above; we ignore touch pointers here to avoid double-paging. */
+    var pdown = false, pStartX = 0, pStartY = 0, pHoriz = null, vw = window.innerWidth;
+    var IGNORE = "a,button,input,textarea,select,iframe,.hero-play,.pager-dots,[data-go],.media-zoom,.load-prototype-btn";
+
+    pager.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch") return;        // touchscreens use the touch swipe
+      if (e.button !== 0) return;                   // primary button only
+      if (e.target.closest && e.target.closest(IGNORE)) return;
+      if (animating) return;
+      pdown = true; pHoriz = null; vw = window.innerWidth;
+      pStartX = e.clientX; pStartY = e.clientY;
+    });
+
+    pager.addEventListener("pointermove", function (e) {
+      if (!pdown) return;
+      var dx = e.clientX - pStartX, dy = e.clientY - pStartY;
+
+      if (pHoriz === null) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;   // wait for intent
+        pHoriz = Math.abs(dx) > Math.abs(dy);
+        if (!pHoriz) {                                       // vertical intent → let chapter scroll
+          var inner = activeInner();
+          if (inner && inner.scrollHeight > inner.clientHeight + 4) { pdown = false; return; }
+        }
+        if (pHoriz) {
+          track.classList.add("dragging");
+          pager.classList.add("is-grabbing");
+          document.body.classList.add("is-grabbing");
+          try { pager.setPointerCapture(e.pointerId); } catch (_) {}
+        }
+      }
+      if (!pHoriz) return;
+      e.preventDefault();
+
+      var offset = dx;
+      // rubber-band at the two ends so it feels physical, not stuck
+      if ((idx === 0 && dx > 0) || (idx === total - 1 && dx < 0)) offset = dx * 0.35;
+      track.style.transform = "translateX(calc(" + (-idx * 100) + "vw + " + offset + "px))";
+    });
+
+    function endDrag(e) {
+      if (!pdown) return;
+      pdown = false;
+      track.classList.remove("dragging");
+      pager.classList.remove("is-grabbing");
+      document.body.classList.remove("is-grabbing");
+      if (!pHoriz) return;
+      var dx = e.clientX - pStartX;
+      var threshold = Math.min(140, vw * 0.12);
+      if (Math.abs(dx) > threshold) go(idx + (dx < 0 ? 1 : -1));
+      else go(idx);                                  // snap back smoothly
+    }
+    pager.addEventListener("pointerup", endDrag);
+    pager.addEventListener("pointercancel", endDrag);
+    pager.addEventListener("pointerleave", function (e) { if (pdown && pHoriz) endDrag(e); });
 
     window.addEventListener("resize", function () {
       track.style.transform = "translateX(" + (-idx * 100) + "vw)";
