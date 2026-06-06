@@ -176,17 +176,41 @@ body::before{
 .copyright a{ border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:1px; }
 .copyright a:hover{ color:var(--gold-pale); }
 .copyright .dot{ width:4px; height:4px; border-radius:50%; background:var(--gold-soft); }
-.pager ~ .copyright{
-  mix-blend-mode:normal; color:#fff;
-  background:rgba(20,19,15,.6);
-  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-  padding:.5rem .9rem; border-radius:50px;
-  border:1px solid rgba(237,231,218,.14);
-  box-shadow:0 8px 24px -10px rgba(0,0,0,.55);
-}
-.pager ~ .copyright a{ color:#fff; border-bottom-color:rgba(255,255,255,.45); }
-.pager ~ .copyright a:hover{ color:var(--gold-pale); }
+/* Floating Copyright Chip - All Pages */
 
+.copyright {
+  mix-blend-mode: normal;
+  color: #fff;
+  
+  background: rgba(20, 19, 15, .6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  
+  padding: .5rem .9rem;
+  border-radius: 50px;
+  
+  border: 1px solid rgba(237, 231, 218, .14);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, .55);
+  
+  transition:
+    opacity .35s ease,
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.copyright a {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, .45);
+}
+
+.copyright a:hover {
+  color: var(--gold-pale);
+}
+.copyright.footer-visible {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
 /* =====================================================================
    07 · HORIZONTAL CHAPTER PAGER  (index)
    ===================================================================== */
@@ -462,7 +486,7 @@ body::before{
 .tnode ul.dots li::before{ content:""; position:absolute; left:0; top:.6em; width:5px; height:1px; background:var(--gold); }
 
 .timeline-card{ position:relative; background:var(--warm-white); border:1px solid var(--line);
-  border-radius:20px; margin-bottom:1.6rem; overflow:hidden;
+  border-radius:20px; margin-bottom:1.6rem; width:min(1100px, 90%); overflow:hidden;
   box-shadow:0 8px 25px -10px rgba(20,19,15,0.08); transition:all .4s var(--ease-ui); }
 .timeline-card:hover{ box-shadow:0 20px 45px -12px rgba(20,19,15,0.12); transform:translateY(-4px); border-color:var(--gold-soft); }
 .timeline-card:hover::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold); opacity:.15; }
@@ -618,7 +642,7 @@ body::before{
   padding-top:1.8rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
   font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--on-dark-soft); }
 
-.prototype-section{ margin:3.5rem 0 4.5rem; }
+.prototype-section{ margin:3.5rem 0 3.5rem; }
 .prototype-header{ display:flex; align-items:flex-end; justify-content:space-between;
   margin-bottom:1.2rem; padding-bottom:1.2rem; border-bottom:1px solid var(--line); }
 .prototype-header h3{ font-family:var(--display); font-size:1.75rem; color:#0f2a38; margin:0; }
@@ -923,7 +947,7 @@ body::before{
 .page-hero .hero-content{ width:100%; }
 
 /* careers timeline header layout (named in markup, previously unstyled) */
-.full-timeline{ max-width:920px; }
+.full-timeline{ max-width:1200px; }
 .timeline-header-left{ display:flex; flex-direction:column; gap:.35rem; text-align:left; }
 
 /* expertise icons — inline Lucide line-SVGs, themed to the gold accent */
@@ -1024,4 +1048,76 @@ body::before{
 
 @media (prefers-reduced-motion:reduce){
   .career-item:not(:last-child)::before{ animation:none; }
+}
+/* ==================================================
+   WORK MUSEUM → PROCESS TRANSITION
+   ================================================== */
+
+.museum-exit{
+  max-width:900px;
+  margin:3rem auto 4rem;
+  text-align:center;
+  position:relative;
+}
+
+.museum-exit__line{
+  width:120px;
+  height:1px;
+  margin:0 auto 2.5rem;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.museum-exit h2{
+  font-size:clamp(2.4rem,5vw,4.6rem);
+  line-height:1;
+  margin:1rem auto 1.5rem;
+  max-width:none;
+}
+
+.museum-exit h2 em{
+  color:var(--gold);
+  font-style:italic;
+}
+
+.museum-exit__text{
+  max-width:54ch;
+  margin:0 auto 2.5rem;
+  color:var(--text-soft);
+  font-size:1rem;
+  line-height:1.8;
+}
+
+.museum-exit__cta{
+  display:inline-flex;
+  align-items:center;
+  gap:1rem;
+
+  padding:1.2rem 2.4rem;
+
+  border:1px solid var(--gold);
+  color:var(--gold);
+
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-size:.72rem;
+
+  transition:all .45s var(--ease);
+}
+
+.museum-exit__cta:hover{
+  background:var(--gold);
+  color:var(--charcoal);
+}
+
+.museum-exit__cta .arrow{
+  transition:transform .4s var(--ease);
+}
+
+.museum-exit__cta:hover .arrow{
+  transform:translateX(6px);
 }
