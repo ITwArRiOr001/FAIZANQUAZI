@@ -1,56 +1,39 @@
 /* =====================================================================
-   FAIZAN QUAZI — UX PORTFOLIO
-   Museum-grade editorial · Orca theme
-   Palette: warm white · charcoal · gold · silver · ocean blue
-   One consolidated stylesheet shared across every page.
-
-   STRUCTURE
-   01 Tokens            08 Chapter 03 — Career
-   02 Reset & base      09 Chapter 04 — Expertise
-   03 Atoms             10 Chapter 05 — Contact
-   04 Media system      11 Page shell (sub-pages)
-   05 Navigation        12 Work museumAAAAAAAA
-   06 Pager & chapters  13 Careers timeline
-   07 Chapter 01 — Hero 14 About / Contact page / Prototype
-   15 Reveal · scroll-progress
-   16 Responsive  17 Reduced motion
-   ===================================================================== */
-
-/* =====================================================================
    01 · DESIGN TOKENS
    ===================================================================== */
-:root{
-  --warm-white:   #F3EEE3;
+:root {
+  --warm-white: #F3EEE3;
   --warm-white-2: #ECE5D6;
-  --stone:        #DAD2C2;
-  --charcoal:     #14130F;
-  --charcoal-2:   #211E18;
-  --ink:          #1C1A15;
-
-  --gold:         #B0892F;
-  --gold-soft:    #C9A24A;
-  --gold-pale:    #E4CE93;
-  --silver:       #B7BBC0;
-  --silver-soft:  #CBCED2;
-  --ocean:        #6E97A8;
-  --ocean-deep:   #3F6675;
-  --ocean-pale:   #AFC9D2;
-
-  --text:         #1C1A15;
-  --text-soft:    #5A554A;
-  --text-faint:   #8A8478;
-  --on-dark:      #EDE7DA;
+  --stone: #DAD2C2;
+  --charcoal: #14130F;
+  --charcoal-2: #211E18;
+  --ink: #1C1A15;
+  
+  --gold: #B0892F;
+  --gold-soft: #C9A24A;
+  --gold-pale: #E4CE93;
+  --silver: #B7BBC0;
+  --silver-soft: #CBCED2;
+  --ocean: #6E97A8;
+  --ocean-deep: #3F6675;
+  --ocean-pale: #AFC9D2;
+  
+  --text: #1C1A15;
+  --text-soft: #5A554A;
+  --text-faint: #8A8478;
+  --on-dark: #EDE7DA;
   --on-dark-soft: #B6AE9D;
-
-  --display: "Cormorant Garamond", Georgia, serif;
-  --ui:      "Jost", "Helvetica Neue", Arial, sans-serif;
-
-  --gut:  clamp(1.25rem, 4vw, 4rem);
+  
+  /* Updated fonts - more consistent & modern */
+  --display: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --ui: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  
+  --gut: clamp(1.25rem, 4vw, 4rem);
   --maxw: 1500px;
-  --ease: cubic-bezier(.7,0,.2,1);
-  --ease-ui: cubic-bezier(.4,0,.2,1);
-  --line:   rgba(20,19,15,.14);
-  --line-d: rgba(237,231,218,.16);
+  --ease: cubic-bezier(.7, 0, .2, 1);
+  --ease-ui: cubic-bezier(.4, 0, .2, 1);
+  --line: rgba(20, 19, 15, .14);
+  --line-d: rgba(237, 231, 218, .16);
 }
 
 /* =====================================================================
@@ -67,7 +50,12 @@ img,video{ display:block; max-width:100%; }
 a{ color:inherit; text-decoration:none; }
 button{ font:inherit; color:inherit; cursor:pointer; background:none; border:none; }
 ul{ list-style:none; }
-h1,h2,h3,h4{ font-family:var(--display); font-weight:500; line-height:1.02; letter-spacing:-.01em; }
+h1,h2,h3,h4{ 
+  font-family:var(--display); 
+  font-weight:600; 
+  line-height:1.08; 
+  letter-spacing:-.022em; 
+}
 body::before{
   content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
   background-image:radial-gradient(rgba(20,19,15,.025) 1px, transparent 1px);
@@ -560,15 +548,59 @@ body::before{
 .skill h4{ font-family:var(--ui); font-size:.82rem; letter-spacing:.1em; }
 .skill .lvl{ font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-top:.3rem; }
 
-.quote-carousel{ display:flex; gap:2rem; overflow-x:auto; scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch; padding-bottom:2rem; scrollbar-width:none; }
+/* ABOUT · RECOMMENDATIONS — professional testimonial cards */
+.quote-carousel{
+  display:flex; gap:1.6rem; overflow-x:auto;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain; padding:.4rem .2rem 1.8rem; scrollbar-width:none;
+}
 .quote-carousel::-webkit-scrollbar{ display:none; }
-.quote-card{ flex:0 0 380px; scroll-snap-align:start; padding:2.8rem 2.8rem 2.6rem;
-  background:var(--warm-white); border:1px solid var(--line); border-radius:20px;
-  transition:all .4s var(--ease-ui); box-shadow:0 8px 25px -10px rgba(20,19,15,0.07); }
-.quote-card:hover{ transform:translateY(-8px); box-shadow:0 25px 55px -12px rgba(20,19,15,0.12); border-color:var(--gold-soft); }
-.quote-card p{ font-family:var(--display); font-size:1.28rem; line-height:1.6; font-style:italic; color:var(--text); }
-.quote-card .quote-src{ display:block; margin-top:2.2rem; font-size:.9rem; color:var(--gold); letter-spacing:.4px; }
+
+.quote-card{
+  flex:0 0 380px; scroll-snap-align:start;
+  display:flex; flex-direction:column;                 /* lets the author sit at the bottom */
+  padding:2.3rem 2.3rem 2rem;
+  background:#FFFDF8;                                   /* lifts off the warm-white page */
+  border:1px solid var(--line); border-radius:18px;
+  box-shadow:0 14px 34px -18px rgba(20,19,15,0.18);
+}
+
+.quote-card p{
+  font-family:var(--ui);                               /* clean sans */
+  font-style:normal; font-weight:400;
+  font-size:1.04rem; line-height:1.62; color:var(--text);
+  margin:0;
+  position:relative; padding-top:1.6rem;
+}
+.quote-card p::before{                                  /* tasteful gold quotation mark */
+  content:"\201C"; position:absolute; top:-.4rem; left:-.2rem;
+  font-family:var(--display); font-size:2.6rem; line-height:1;
+  color:var(--gold-soft); opacity:.55;
+}
+
+.quote-card .quote-src{
+  margin-top:1.5rem; padding-top:1.1rem; border-top:1px solid var(--line);
+  font-family:var(--ui); font-size:.85rem; line-height:1.5;
+}
+.quote-card .quote-src strong{
+  display:block; font-weight:600; color:var(--gold);
+  font-size:.96rem; letter-spacing:.01em; margin-bottom:.15rem;
+}
+.quote-card .quote-src span{ color:var(--text-soft); }
+
+.quote-card:hover{
+  transform:translateY(-6px); border-color:var(--gold-soft);
+  box-shadow:0 28px 56px -22px rgba(20,19,15,0.22);
+  transition:transform .4s var(--ease-ui), box-shadow .4s var(--ease-ui), border-color .4s var(--ease-ui);
+}
+
+/* MOBILE FIX */
+@media (max-width:760px){
+  .quote-carousel{ flex-direction:column; overflow-x:visible; scroll-snap-type:none; gap:1.1rem; padding:0; }
+  .quote-card{ flex:0 0 auto; width:100%; padding:1.7rem 1.5rem 1.5rem; }
+  .quote-card p{ font-size:1rem; padding-top:1.5rem; }
+  .quote-card:hover{ transform:none; }
+}
 
 .process-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.8rem; margin-top:2rem; }
 .process-step{ padding:2rem 2.2rem; background:var(--warm-white); border:1px solid var(--line);
@@ -783,7 +815,13 @@ body::before{
     padding:5.5rem 1.3rem calc(7rem + env(safe-area-inset-bottom));
     gap:.25rem;
   }
-  .hero h1{ font-size:clamp(2.1rem, 10.5vw, 3.4rem); }
+  .hero h1 {
+  font-size: clamp(2.3rem, min(10.5vw, 13vh), 8rem);
+  font-weight: 600;
+  color: var(--on-dark);
+  letter-spacing: -.03em;
+  line-height: 1.0;
+}
   .hero .role{ font-size:.64rem; letter-spacing:.22em; margin:.7rem 0 .15rem; }
   .hero .lede{ font-size:.9rem; margin-top:.6rem; max-width:40ch; }
   .hero .hero__meta{ gap:.9rem 1.5rem; margin-top:1.2rem; }
