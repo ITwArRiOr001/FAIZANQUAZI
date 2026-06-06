@@ -457,3 +457,96 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 })();
+/* =====================================================================
+   MOBILE-ONLY REFINEMENTS  (append to script.js, end of file)
+   Additive only — does NOT touch existing functions, structure or
+   desktop behaviour. Both blocks are gated to (max-width:760px).
+   ===================================================================== */
+
+/* A · INDEX NAV AUTO-HIDE driven by the in-chapter scroll.
+   The sub-pages already hide/show the nav on window scroll, but the
+   index scrolls INSIDE .chapter__inner, so the window listener never
+   fires and the bar overlaps content. This mirrors the same behaviour
+   (scroll down → bar slides up; scroll up → it returns) using the
+   existing .scrolled / .nav--hidden classes. Mobile only. */
+(function () {
+  "use strict";
+  if (!document.querySelector(".pager")) return;             // index page only
+  var nav = document.querySelector(".nav");
+  if (!nav) return;
+  var mq = window.matchMedia("(max-width:760px)");
+  var inners = [].slice.call(document.querySelectorAll(".chapter__inner"));
+  var ticking = false;
+
+  function apply(el) {
+    var y = el.scrollTop;
+    var last = el.__navLastY || 0;
+    if (y > 80) nav.classList.add("scrolled"); else nav.classList.remove("scrolled");
+    if (y > last && y > 120) nav.classList.add("nav--hidden");
+    else nav.classList.remove("nav--hidden");
+    el.__navLastY = y;
+    ticking = false;
+  }
+
+  inners.forEach(function (el) {
+    el.addEventListener("scroll", function () {
+      if (!mq.matches) return;                                 // desktop untouched
+      if (!ticking) {
+        ticking = true;
+        var t = el;
+        window.requestAnimationFrame(function () { apply(t); });
+      }
+    }, { passive: true });
+  });
+
+  /* if the viewport grows back to desktop, restore the bar */
+  if (mq.addEventListener) {
+    mq.addEventListener("change", function () {
+      if (!mq.matches) { nav.classList.remove("nav--hidden"); nav.classList.remove("scrolled"); }
+    });
+  }
+})();
+
+/* =====================================================================
+   LAZY FIGMA EMBEDS — assign iframe src only when the prototype is
+   actually opened or scrolled into view (the markup now uses data-src).
+   Additive; does not change existing prototype show/hide logic.
+   ===================================================================== */
+(function () {
+  "use strict";
+  function activate(frame) {
+    if (frame && frame.getAttribute && frame.getAttribute("data-src")) {
+      frame.src = frame.getAttribute("data-src");
+      frame.removeAttribute("data-src");
+    }
+  }
+  function ready(fn) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+  ready(function () {
+    var frames = [].slice.call(document.querySelectorAll(".prototype-embed iframe[data-src]"));
+    if (!frames.length) return;
+
+    /* explicit click on the Load button → load its embed immediately */
+    [].slice.call(document.querySelectorAll(".load-prototype-btn")).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-load");
+        var embed = id && document.getElementById("embed-" + id);
+        if (embed) activate(embed.querySelector("iframe[data-src]"));
+      });
+    });
+
+    /* also load when an embed becomes visible (covers auto-open / scroll-in) */
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { activate(en.target); io.unobserve(en.target); }
+        });
+      }, { rootMargin: "200px" });
+      frames.forEach(function (f) { io.observe(f); });
+    } else {
+      frames.forEach(activate);
+    }
+  });
+})();
