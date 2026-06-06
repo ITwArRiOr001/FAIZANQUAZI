@@ -46,7 +46,15 @@
     <section class="chapter hero chapter--dark">
       <div class="media media--dark hero-media">
         <!-- HD orca still shown until the visitor presses play -->
-        <img class="hero-poster" src="assets/hero-orca-poster.jpg" alt="Orca in deep water">
+        <picture class="hero-poster">
+  <source
+    media="(max-width:768px)"
+    srcset="assets/hero-orca-poster-mobile.jpg">
+
+  <img
+    src="assets/hero-orca-poster.jpg"
+    alt="Orca in deep water">
+</picture>
         <!-- Video stays hidden + paused until play is clicked -->
         <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero-orca-poster.jpg">
           <source src="assets/orca-hero.mp4" type="video/mp4">
