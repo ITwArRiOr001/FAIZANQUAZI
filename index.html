@@ -47,14 +47,15 @@
       <div class="media media--dark hero-media">
         <!-- HD orca still shown until the visitor presses play -->
         <picture class="hero-poster">
-  <source
-    media="(max-width:768px)"
-    srcset="assets/hero-orca-poster-mobile.jpg">
-
-  <img
-    src="assets/hero-orca-poster.jpg"
-    alt="Orca in deep water">
-</picture>
+          <!-- phones / portrait viewports → dedicated tall crop -->
+          <source media="(max-width:768px)" srcset="assets/hero-orca-poster-mobile.jpg">
+          <!-- tablets & desktops → the landscape master -->
+          <source media="(min-width:769px)" srcset="assets/hero-orca-poster.jpg">
+          <!-- ultimate fallback if <source> is unsupported -->
+          <img src="assets/hero-orca-poster.jpg"
+               alt="Orca breaching in deep ocean water"
+               fetchpriority="high" decoding="async">
+        </picture>
         <!-- Video stays hidden + paused until play is clicked -->
         <video class="hero-video" muted loop playsinline preload="none" poster="assets/hero-orca-poster.jpg">
           <source src="assets/orca-hero.mp4" type="video/mp4">
