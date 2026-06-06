@@ -884,3 +884,20 @@ body::before{
 @media (prefers-reduced-motion:reduce){
   .lightbox, .lightbox__img, .media-zoom{ transition:none; }
 }
+@media (max-width:760px){
+ 
+  /* --- Prototype preview: taller box + full-width, comfortable button --- */
+  .prototype-preview{ min-height:360px; }
+  .prototype-preview .preview-image{
+    width:100%; height:360px; object-fit:cover;
+  }
+  .preview-overlay{ padding:1.4rem; gap:.5rem; }
+  .load-prototype-btn{
+    width:100%; max-width:320px;
+    padding:1.15em 1.4em; font-size:.78rem; letter-spacing:.18em;
+  }
+  .preview-note{ font-size:.66rem; }
+ 
+  /* When the embed auto-opens on mobile it should sit flush, no big jump */
+  .prototype-embed .embed-frame iframe{ height:440px; }
+}
