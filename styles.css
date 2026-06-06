@@ -901,3 +901,21 @@ body::before{
   /* When the embed auto-opens on mobile it should sit flush, no big jump */
   .prototype-embed .embed-frame iframe{ height:440px; }
 }
+
+/* =====================================================================
+   18 · FINALISATION POLISH  (hero highlight, named-class hooks, SVG icons)
+   ===================================================================== */
+/* gold emphasis word in the About / Contact heroes (matches hero h1 em) */
+.page-hero .highlight{ color:var(--gold-pale); font-style:italic; }
+.page-hero--dark{ background:var(--charcoal); }
+.page-hero--premium{ background:linear-gradient(160deg,#1c1a15 0%,#14130f 55%,#0f0e0a 100%); }
+.page-hero .hero-content{ width:100%; }
+
+/* careers timeline header layout (named in markup, previously unstyled) */
+.full-timeline{ max-width:920px; }
+.timeline-header-left{ display:flex; flex-direction:column; gap:.35rem; text-align:left; }
+
+/* expertise icons — inline Lucide line-SVGs, themed to the gold accent */
+.expertise-icon svg{ width:24px; height:24px; color:var(--gold); }
+.expertise-card:hover .expertise-icon svg{ color:var(--gold-soft); }
+@media (max-width:760px){ .expertise-icon svg{ width:22px; height:22px; } }
