@@ -320,8 +320,9 @@ body::before{
 /* =====================================================================
    08 · CHAPTER 03 · CAREER TIMELINE (index)
    ===================================================================== */
-.career-timeline{ display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
-  gap:1.4rem; margin-top:3rem; border-top:1px solid rgba(237,231,218,0.15); padding-top:2.2rem; }
+.career-timeline{ display:flex; align-items:stretch; gap:2.2rem;
+  margin-top:3rem; border-top:1px solid rgba(237,231,218,0.15); padding-top:2.6rem; }
+.career-item{ flex:1 1 0; min-width:0; }
 .career-item{ position:relative; padding:1.5rem 1.7rem 1.7rem; border:1px solid rgba(237,231,218,0.12);
   border-radius:14px; background:rgba(20,19,15,0.35); transition:all .4s var(--ease); }
 .career-item:hover{ border-color:var(--gold-soft); background:rgba(20,19,15,0.55);
@@ -351,9 +352,13 @@ body::before{
 .expertise-card::after{ content:''; position:absolute; top:-50%; left:-100%; width:50%; height:200%;
   background:linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent); transition:left .6s; }
 .expertise-card:hover::after{ left:250%; }
-.expertise-icon{ width:52px; height:52px; border-radius:12px; background:rgba(20,19,15,0.06);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:transform .4s var(--ease); }
-.expertise-card:hover .expertise-icon{ transform:scale(1.08); }
+.expertise-icon{
+  /* NO container — the 3D PNG is the icon. Just a sized, transparent box. */
+  width:60px; height:60px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:none; border:0; border-radius:0; box-shadow:none; overflow:visible;
+}
+.expertise-card:hover .expertise-icon{ transform:none; }
 .expertise-icon .ico-placeholder{ font-size:1.65rem; opacity:.85; }
 .expertise-content{ display:flex; flex-direction:column; min-width:0; }
 .expertise-content .num{ font-size:.68rem; letter-spacing:.32em; text-transform:uppercase;
@@ -770,7 +775,7 @@ body::before{
   /* ---- chapter 04 expertise — clean two-up, no clipping ---- */
   .expertise-grid{ grid-template-columns:repeat(2,1fr); gap:.8rem; }
   .expertise-card{ padding:1.1rem 1rem; gap:.8rem; }
-  .expertise-icon{ width:44px; height:44px; }
+  .expertise-icon{ width:54px; height:54px; }
   .expertise-content .title{ font-size:1.02rem; }
 
   .value-row{ grid-template-columns:1fr; }
@@ -916,6 +921,101 @@ body::before{
 .timeline-header-left{ display:flex; flex-direction:column; gap:.35rem; text-align:left; }
 
 /* expertise icons — inline Lucide line-SVGs, themed to the gold accent */
-.expertise-icon svg{ width:24px; height:24px; color:var(--gold); }
+.expertise-icon svg{ width:24px; height:24px; color:var(--gold-pale); }
 .expertise-card:hover .expertise-icon svg{ color:var(--gold-soft); }
 @media (max-width:760px){ .expertise-icon svg{ width:22px; height:22px; } }
+
+/* =====================================================================
+   19 · EXPERTISE ICONS — 3D-logo upgrade path
+   Each card ships a crisp inline line-SVG (.exp-line). Drop a matching
+   3D PNG into assets/icons/3d/<name>.png and it auto-upgrades:
+   the image loads on top and hides the line fallback; if the file is
+   missing the line icon simply stays. Figma uses its real colour logo.
+   ===================================================================== */
+.expertise-icon .exp3d{
+  /* the whole transparent 3D object, shown intact and floating */
+  width:100%; height:100%; object-fit:contain; transform:none;
+  /* gentle grounding shadow under the object so it sits on the card */
+  filter:drop-shadow(0 8px 12px rgba(20,19,15,0.30));
+  transition:transform .45s var(--ease), filter .45s var(--ease);
+  will-change:transform;
+}
+.expertise-card:hover .expertise-icon .exp3d{
+  transform:translateY(-3px) scale(1.07) rotate(-1deg);   /* lively 3D lift */
+  filter:drop-shadow(0 14px 18px rgba(20,19,15,0.34));
+}
+/* line-icon fallback (only shows if a PNG is missing) — back to gold on the light card */
+.expertise-icon .exp-line{ width:26px; height:26px; color:var(--gold); filter:none; }
+.expertise-card:hover .expertise-icon .exp-line{ color:var(--gold-soft); }
+.expertise-icon .exp-figma{ width:auto; height:34px; filter:none; }
+
+@media (max-width:760px){
+  .expertise-icon{ width:54px; height:54px; }
+  .expertise-icon .exp-line{ width:24px; height:24px; }
+  .expertise-icon .exp-figma{ height:30px; }
+}
+
+/* =====================================================================
+   20 · CAREER TIMELINE — neural links between roles
+   Desktop: a glowing gold synapse sits in the gap between each role.
+   Mobile (stacked): the same link rotates to connect top-to-bottom.
+   Pure CSS pseudo-elements, no markup change.
+   ===================================================================== */
+.career-timeline{ position:relative; }
+
+/* the pathway line, drawn in the gap to the right of each item */
+.career-item:not(:last-child)::after{
+  content:''; position:absolute; top:50%; left:100%;
+  width:2.2rem; height:2px; transform:translateY(-50%);
+  background:linear-gradient(90deg,
+    rgba(176,137,47,0) 0%, var(--gold-soft) 22%,
+    var(--gold-pale) 50%, var(--gold-soft) 78%, rgba(176,137,47,0) 100%);
+  z-index:1; pointer-events:none;
+}
+/* the synapse node, centred on the pathway */
+.career-item:not(:last-child)::before{
+  content:''; position:absolute; top:50%; left:calc(100% + 1.1rem);
+  width:8px; height:8px; border-radius:50%; transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 35% 30%, #fff7e6, var(--gold-pale) 45%, var(--gold) 100%);
+  box-shadow:0 0 0 3px rgba(176,137,47,0.16), 0 0 10px 2px rgba(201,162,74,0.5);
+  z-index:2; pointer-events:none;
+  animation:career-synapse 2.8s var(--ease) infinite;
+}
+/* link feeding the current role glows a touch warmer */
+.career-item.current{ }
+.career-item:nth-last-child(2)::after{
+  background:linear-gradient(90deg,
+    rgba(176,137,47,0) 0%, var(--gold) 30%, var(--gold-pale) 50%, var(--gold) 70%, rgba(176,137,47,0) 100%);
+}
+@keyframes career-synapse{
+  0%,100%{ box-shadow:0 0 0 3px rgba(176,137,47,0.14), 0 0 8px 1px rgba(201,162,74,0.4); }
+  50%    { box-shadow:0 0 0 4px rgba(176,137,47,0.22), 0 0 15px 3px rgba(201,162,74,0.7); }
+}
+
+/* small laptops: keep the row, tighten so five fit cleanly */
+@media (max-width:1080px){
+  .career-timeline{ gap:1.7rem; }
+  .career-item{ padding:1.15rem 1.1rem 1.25rem; }
+  .career-year{ font-size:1.3rem; }
+  .career-role .company{ font-size:.98rem; }
+  .career-item:not(:last-child)::after{ width:1.7rem; }
+  .career-item:not(:last-child)::before{ left:calc(100% + 0.85rem); }
+}
+
+/* mobile: stack, and rotate the neural link to run top -> bottom */
+@media (max-width:760px){
+  .career-timeline{ flex-direction:column; gap:1.8rem; }
+  .career-item:not(:last-child)::after{
+    top:100%; left:50%; width:2px; height:1.8rem; transform:translateX(-50%);
+    background:linear-gradient(180deg,
+      rgba(176,137,47,0) 0%, var(--gold-soft) 22%,
+      var(--gold-pale) 50%, var(--gold-soft) 78%, rgba(176,137,47,0) 100%);
+  }
+  .career-item:not(:last-child)::before{
+    top:calc(100% + 0.9rem); left:50%; transform:translate(-50%,-50%);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .career-item:not(:last-child)::before{ animation:none; }
+}
